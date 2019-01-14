@@ -1,18 +1,23 @@
 export enum FiltersActionsTypes {
-    SET_FILTERS = '@@filters/SET_FILTERS',
+    SET_SOURCE_FILTERS = '@@filters/SET_SOURCE_FILTERS',
     SET_SEARCH_QUERY = '@@filters/SET_SEARCH_QUERY',
     SET_SORT = '@@filters/SET_SORT',
     RESET_FILTERS = '@@filters/RESET_FILTERS',
 };
 
+export enum SORT_TYPES {
+    ASC = 'ASC',
+    DESC = 'DESC',
+}
+
 export interface IFiltersState {
     sort: string;
-    filters: string[]
+    sourceFilters: string[]
     search: string;
 }
 
-export interface SetFiltersAction {
-    type: FiltersActionsTypes.SET_FILTERS;
+export interface SetSourceFiltersAction {
+    type: FiltersActionsTypes.SET_SOURCE_FILTERS;
     payload: string[];
 }
 
@@ -30,4 +35,4 @@ export interface ResetFiltersAction {
     type: FiltersActionsTypes.RESET_FILTERS;
 }
 
-export type FilterActions = SetFiltersAction | SetSearchQueryAction | SetSortAction | ResetFiltersAction;
+export type FilterActions = SetSourceFiltersAction | SetSearchQueryAction | SetSortAction | ResetFiltersAction;

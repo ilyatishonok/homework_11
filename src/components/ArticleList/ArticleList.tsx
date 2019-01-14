@@ -4,7 +4,6 @@ import Article from './Article';
 import Loader from '../Loader';
 import config from '../../constants/config';
 import { IArticle } from '../../store/types/articles';
-import FiltersBarContainer from '../../containers/FiltersBarContainer';
 
 export interface ArticleListPropTypes {
     articles: IArticle[];
@@ -21,7 +20,8 @@ const HighLight = styled.b`
     color: #491253;
 `;
 
-const renderContent = ({ articles, isFetching, error, activeTab }: ArticleListPropTypes) => {
+const ArticleList = ({ articles, isFetching, error, activeTab }: ArticleListPropTypes) => {
+    console.log('render');
     if (isFetching) {
         return <Loader />
     }
@@ -40,7 +40,6 @@ const renderContent = ({ articles, isFetching, error, activeTab }: ArticleListPr
 
     return (
         <React.Fragment>
-            <FiltersBarContainer />
             {articles.map((article: IArticle): ReactNode => ( 
                 <Article
                     key={article.title}
@@ -53,9 +52,5 @@ const renderContent = ({ articles, isFetching, error, activeTab }: ArticleListPr
         </React.Fragment>
     );
 }
-
-const ArticleList = (props: ArticleListPropTypes) => (
-    renderContent(props)
-)
 
 export default ArticleList;

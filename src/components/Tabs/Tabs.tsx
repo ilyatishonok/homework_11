@@ -20,7 +20,7 @@ const TabsContainer = styled.div`
 
 const Tabs = (props: ITabProps) => {
     const { activeTab, tabs, onTabChange } = props;
-
+    
     return (
         <TabsContainer>
            {tabs.map(tab => (

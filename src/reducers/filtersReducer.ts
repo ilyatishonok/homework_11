@@ -1,15 +1,15 @@
 import { IFiltersState, FilterActions, FiltersActionsTypes } from "../store/types/filters";
 
 const initialState = {
-    sort: 'Asc',
+    sort: '',
     search: '',
-    filters: [],
+    sourceFilters: [],
 }
 
 const filtersReducer = (state: IFiltersState = initialState, action: FilterActions): IFiltersState => {
     switch (action.type) {
-        case FiltersActionsTypes.SET_FILTERS:
-            return { ...state, filters: action.payload };
+        case FiltersActionsTypes.SET_SOURCE_FILTERS:
+            return { ...state, sourceFilters: action.payload };
 
         case FiltersActionsTypes.SET_SEARCH_QUERY:
             return { ...state, search: action.payload };

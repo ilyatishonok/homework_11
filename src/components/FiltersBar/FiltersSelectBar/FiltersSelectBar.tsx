@@ -6,22 +6,22 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 export interface IFiltersSelectBar {
-    sources: string[],
-    values: string[],
+    sourceFilters: string[],
+    selectedSourceFilters: string[],
     onFiltersSelectBarChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const FiltersSelectBar = ({ sources, values, onFiltersSelectBarChange }: IFiltersSelectBar) => {
+const FiltersSelectBar = ({ sourceFilters, selectedSourceFilters, onFiltersSelectBarChange }: IFiltersSelectBar) => {
     return (
         <FormControl fullWidth>
             <InputLabel htmlFor="filters">Filters</InputLabel>
             <Select
                     multiple
-                    value={values}
+                    value={selectedSourceFilters}
                     onChange={onFiltersSelectBarChange}
                     input={<Input id="filters" />}
             >
-                {sources.map(source => (
+                {sourceFilters.map(source => (
                     <MenuItem key={source} value={source} >
                         {source}
                     </MenuItem>

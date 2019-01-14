@@ -6,10 +6,11 @@ import {
     IFetchArticlesRequestAction,
     IFetchArticlesRequestSuccessAction,
     IArticle,
-    IFetchArticlesRequestFailedAction,
+    IFetchArticlesRequestFailureAction,
 } from '../store/types/articles';
 import { FilterActions } from '../store/types/filters';
 import { resetFilters } from './filtersActions';
+import config from '../constants/config';
 
 export interface IFetchArticlesResponse {
     articles: IArticle[];
@@ -25,13 +26,13 @@ export const fetchArticlesRequestSuccess = (articles: IArticle[]): IFetchArticle
     payload: articles,
 });
 
-export const fetchArticlesRequestFailure = (error: string): IFetchArticlesRequestFailedAction => ({
-    type: ArticlesActionsTypes.FETCH_ARTICLES_REQUEST_FAILED,
+export const fetchArticlesRequestFailure = (error: string): IFetchArticlesRequestFailureAction => ({
+    type: ArticlesActionsTypes.FETCH_ARTICLES_REQUEST_FAILURE,
     payload: error,
 });
 
 export const fetchArticles = (tab: string): ThunkAction<void, RootState, void, ArticleActions | FilterActions> => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(fetchArticlesRequest(tab));
         dispatch(resetFilters());
 
@@ -44,7 +45,7 @@ export const fetchArticles = (tab: string): ThunkAction<void, RootState, void, A
                 dispatch(fetchArticlesRequestSuccess(data.articles));
             })
             .catch(() => {
-                dispatch(fetchArticlesRequestFailure('Error'));
+                dispatch(fetchArticlesRequestFailure(config.defaultErrorMessage));
             });
     }
 }

@@ -7,14 +7,14 @@ import getFilters from '../../selectors/getFilters';
 
 const mapStateToProps = (state: RootState) => ({
     searchQuery: state.filters.search,
-    filterValues: state.filters.filters,
+    selectedSourceFilters: state.filters.sourceFilters,
     sort: state.filters.sort,
-    filters: getFilters(state),
+    sourceFilters: getFilters(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     setSearchQuery: (query: string) => dispatch(setSearchQuery(query)),
-    setFilters: (filters: string[]) => dispatch(setFilters(filters)),
+    setSourceFilters: (sourceFilters: string[]) => dispatch(setFilters(sourceFilters)),
     setSort: (sort: string) => dispatch(setSort(sort)),
 });
 

@@ -15,7 +15,7 @@ const articlesReducer = (state: IArticlesState = initialState, action: ArticleAc
         case ArticlesActionsTypes.FETCH_ARTICLES_REQUEST_SUCCESS:
             return { ...state, data: action.payload, isFetching: false };
 
-        case ArticlesActionsTypes.FETCH_ARTICLES_REQUEST_FAILED:
+        case ArticlesActionsTypes.FETCH_ARTICLES_REQUEST_FAILURE:
             return { ...state, isFetching: false, error: action.payload };
 
         default: 

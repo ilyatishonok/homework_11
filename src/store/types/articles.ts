@@ -1,7 +1,7 @@
 export enum ArticlesActionsTypes {
     FETCH_ARTICLES_REQUEST = '@@articles/FETCH_ARTICLES_REQUEST',
     FETCH_ARTICLES_REQUEST_SUCCESS = '@@articles/FETCH_ARTICLES_REQUEST_SUCCESS',
-    FETCH_ARTICLES_REQUEST_FAILED = '@@articles/FETCH_ARTICLES_REQUEST_FAILED',
+    FETCH_ARTICLES_REQUEST_FAILURE = '@@articles/FETCH_ARTICLES_REQUEST_FAILURE',
 };
 
 export interface IArticle {
@@ -31,9 +31,9 @@ export interface IFetchArticlesRequestSuccessAction {
     payload: IArticle[],
 }
 
-export interface IFetchArticlesRequestFailedAction {
-    type: ArticlesActionsTypes.FETCH_ARTICLES_REQUEST_FAILED;
+export interface IFetchArticlesRequestFailureAction {
+    type: ArticlesActionsTypes.FETCH_ARTICLES_REQUEST_FAILURE;
     payload: string;
 }
 
-export type ArticleActions = IFetchArticlesRequestAction | IFetchArticlesRequestFailedAction | IFetchArticlesRequestSuccessAction;
+export type ArticleActions = IFetchArticlesRequestAction | IFetchArticlesRequestFailureAction | IFetchArticlesRequestSuccessAction;

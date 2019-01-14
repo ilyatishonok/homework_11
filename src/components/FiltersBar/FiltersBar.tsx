@@ -3,19 +3,35 @@ import styled from 'styled-components';
 import SeachBar from './SearchBar';
 import FiltersSelectBar from './FiltersSelectBar/FiltersSelectBar';
 import SortBar from './SortBar';
-import { Button } from '@material-ui/core';
+import { Button, withStyles } from '@material-ui/core';
 
-const Container = styled.div`
+const FiltersContainer = styled.div`
+    margin: 10px;
     padding: 20px;
+    border: 1px solid black;
+    box-shadow: 0 0 10px black;
+    border-radius: 10px;
 `;
+
+const FilteredButton = withStyles({
+    root: {
+        background: '#491253',
+        border: 0,
+        color: 'white',
+        height: 48,
+        '&:hover': {
+            background: '#712d7d',
+        }
+    },
+})(Button);
 
 export interface IFiltersBarProps {
     searchQuery: string;
-    filters: string[];
-    filterValues: string[];
+    sourceFilters: string[];
+    selectedSourceFilters: string[];
     sort: string;
     setSearchQuery: (query: string) => void;
-    setFilters: (filters: string[]) => void;
+    setSourceFilters: (sourceFilters: string[]) => void;
     setSort: (sort: string) => void;
 }
 
@@ -34,7 +50,7 @@ class FiltersBar extends Component<IFiltersBarProps, IFiltersBarState> {
 
     onFiltersSelectBarChange = (event: ChangeEvent<HTMLSelectElement>) => {
         //Workaround to issue https://github.com/mui-org/material-ui/issues/13782
-        this.props.setFilters(event.target.value as any);
+        this.props.setSourceFilters(event.target.value as any);
     }
 
     onSortBarValueChange = (event: MouseEvent) => {
@@ -50,20 +66,30 @@ class FiltersBar extends Component<IFiltersBarProps, IFiltersBarState> {
     }
 
     render(): ReactNode {
-        const { searchQuery, filterValues, filters, sort } = this.props;
+        const { searchQuery, selectedSourceFilters, sourceFilters, sort } = this.props;
 
         return (
             <React.Fragment>
                 {this.state.isVisible && (
-                    <Container>
-                        <FiltersSelectBar onFiltersSelectBarChange={this.onFiltersSelectBarChange} values={filterValues} sources={filters} />
-                        <SeachBar value={searchQuery} onSearchBarValueChange={this.onSearchBarValueChange} />
-                        <SortBar value={sort} changeSort={this.onSortBarValueChange} />
-                    </Container>
+                    <FiltersContainer>
+                        <FiltersSelectBar
+                            onFiltersSelectBarChange={this.onFiltersSelectBarChange}
+                            selectedSourceFilters={selectedSourceFilters}
+                            sourceFilters={sourceFilters} 
+                        />
+                        <SeachBar
+                            value={searchQuery}
+                            onSearchBarValueChange={this.onSearchBarValueChange} 
+                        />
+                        <SortBar 
+                            value={sort}
+                            changeSort={this.onSortBarValueChange} 
+                        />
+                    </FiltersContainer>
                 )}
-                <Button onClick={this.onButtonVisibleClick} >
+                <FilteredButton onClick={this.onButtonVisibleClick}>
                     {this.state.isVisible ? 'Hide filters' : 'Show filters'}
-                </Button>
+                </FilteredButton>
             </React.Fragment>
         )
     }
