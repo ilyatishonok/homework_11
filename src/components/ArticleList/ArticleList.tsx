@@ -21,7 +21,6 @@ const HighLight = styled.b`
 `;
 
 const ArticleList = ({ articles, isFetching, error, activeTab }: ArticleListPropTypes) => {
-    console.log('render');
     if (isFetching) {
         return <Loader />
     }
