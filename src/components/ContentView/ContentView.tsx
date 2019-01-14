@@ -31,7 +31,7 @@ const ArticlesView = styled.div`
     margin-left: 200px;
     margin-right: 200px;
     box-shadow: 0 0 20px black;
-    min-height: 400px;
+    min-height: 200px;
     text-align: center;
     margin-bottom: 20px;
 

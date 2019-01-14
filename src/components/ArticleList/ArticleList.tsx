@@ -37,6 +37,14 @@ const ArticleList = ({ articles, isFetching, error, activeTab }: ArticleListProp
         );
     }
 
+    if (!articles.length) {
+        return (
+            <div>
+                No Articles
+            </div>
+        )
+    }
+
     return (
         <React.Fragment>
             {articles.map((article: IArticle): ReactNode => ( 

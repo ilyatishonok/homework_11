@@ -35,7 +35,7 @@ export default createSelector(
             return newArticles;
         }
     
-        newArticles = newArticles.sort((firstArticle, secondArticle) => {
+        newArticles = [...newArticles].sort((firstArticle, secondArticle) => {
             return firstArticle.title.localeCompare(secondArticle.title);
         });
 

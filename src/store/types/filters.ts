@@ -6,8 +6,8 @@ export enum FiltersActionsTypes {
 };
 
 export enum SORT_TYPES {
-    ASC = 'ASC',
-    DESC = 'DESC',
+    ASC = 'Asc',
+    DESC = 'Desc',
 }
 
 export interface IFiltersState {
